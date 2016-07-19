@@ -98,6 +98,7 @@ namespace Cikkek.Controllers
         public ActionResult Torol(Product prod)
         {
             var b = _allProducts.Remove(_allProducts.Single(p => p.Cikkszam == prod.Cikkszam));
+            var bb = _currentProducts.Remove(_currentProducts.Single(p => p.Cikkszam == prod.Cikkszam));
             return RedirectToAction("Index");
         }
 
