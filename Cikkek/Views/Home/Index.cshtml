@@ -1,0 +1,60 @@
+﻿@using Cikkek.Models
+@using System.Collections.Generic
+
+
+@model List<Product>
+<meta charset="utf-8">
+
+@Styles.Render("~/Content/css")
+<div>
+    @Html.ActionLink("Letöltés", "Letoltes", "Home", null, new { @class = "btn btn-default" })
+    @Html.ActionLink("Új elem hozzáadása", "UjElem", "Home", null, new { @class = "btn btn-default" })
+
+
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+        @Html.TextBox("search") <input type="submit" value="Keresés">
+    }
+    
+    @Html.ActionLink("Előző", "Elozo", "Home", null, new { @class = "btn btn-default" })
+   
+    @Html.ActionLink("Következő", "Kovetkezo", "Home", null, new { @class = "btn btn-default" })
+
+
+</div>
+<p></p>
+
+<table border="1">
+    <thead>
+        <tr>
+           <th>
+                @Html.ActionLink("Cikknév", "CikknevRendez", "Home")
+           </th>
+           <th>
+                @Html.ActionLink("Cikkszám", "CikkszamRendez", "Home")
+           </th>
+           <th>Vonalkód</th>
+           <th>Mennyiségi egység</th>
+           <th>Műveletek</th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (Product p in Model)
+       {
+        <tr>
+            <td>@p.Cikknev</td>
+            <td>@p.Cikkszam</td>
+            <td>@p.Vonalkod</td>
+            <td>@p.MennyisegiEgyseg</td>
+            <td>
+                @Html.ActionLink("Szerkesztés", "Szerkeszt", p)
+                @Html.ActionLink("Törlés", "Torol", p)
+            </td>
+
+        </tr>
+       }
+
+    </tbody>
+
+</table>
+
