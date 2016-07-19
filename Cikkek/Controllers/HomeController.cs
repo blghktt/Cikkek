@@ -62,7 +62,7 @@ namespace Cikkek.Controllers
             }
                
 
-            return View(_currentProducts.GetRange(tol*meret, tol*meret+meret<=_currentProducts.Count ? meret : _currentProducts.Count-tol*meret));
+            return View(_currentProducts.GetRange(tol*meret, tol*meret+meret<_currentProducts.Count ? meret : _currentProducts.Count-tol*meret));
         }
 
         public ActionResult Letoltes()
@@ -146,7 +146,7 @@ namespace Cikkek.Controllers
 
         public ActionResult Kovetkezo()
         {
-            if (tol * meret + meret <= _currentProducts.Count)
+            if (tol * meret + meret < _currentProducts.Count)
                 tol++;
 
             return RedirectToAction("Index");
